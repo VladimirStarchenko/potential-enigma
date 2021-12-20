@@ -119,3 +119,21 @@ const questions = () => {
 function writeToFile(fileName, data) {
   fs.writeFileSync(fileName, data);
 }
+
+// TODO: Create a function to initialize app
+async function init() {
+  try {
+    const data = await questions();
+    const markdownString = await generateMarkdown(data);
+    const isFileCreated = writeToFile("Readme.md", markdownString);
+
+    if (isFileCreated) {
+      console.log("File was successfully created!");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// Function call to initialize app
+init();
