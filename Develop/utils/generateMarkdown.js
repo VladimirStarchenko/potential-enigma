@@ -14,4 +14,61 @@ function renderLicenseBadge(license) {
   }
 }
 
+// TODO: Create a function to generate markdown for README
+// is taking care of my actual README content
+function generateMarkdown(data) {
+  return new Promise(function (resolve, reject) {
+    const myError = false;
+
+    const markdownString = `# ${data.title}
+
+## License
+
+${renderLicenseBadge(data.license)}
+
+## Description
+${data.description}
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+
+## Installation
+
+${data.installation}
+
+## Usage
+
+${data.usage}
+
+## Contributing
+
+${data.contributing}
+
+## Tests
+
+${data.tests}
+
+## Questions
+
+${data.contact}
+
+My Githhub: [${data.github}](${data.githubLink})
+
+My Email: ${data.email}
+`;
+
+    if (!myError) {
+      resolve(markdownString);
+    } else {
+      reject("Sorry this got rejected an error occured");
+    }
+  });
+}
+
 module.exports = generateMarkdown;
